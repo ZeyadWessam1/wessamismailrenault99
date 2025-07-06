@@ -34,6 +34,7 @@
       border-radius: 5px;
       border: 1px solid #ccc;
       font-size: 16px;
+      text-align: right;
     }
 
     button {
@@ -59,17 +60,43 @@
 
     .contact-box a {
       display: inline-block;
-      background-color: #28a745;
+      background-color: #25D366;
       color: white;
       padding: 10px 15px;
       border-radius: 10px;
       font-size: 16px;
       text-decoration: none;
       font-weight: bold;
+      transition: background-color 0.3s ease;
     }
 
     .contact-box a:hover {
-      background-color: #218838;
+      background-color: #1ebe5d;
+    }
+
+    .input-with-icon {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: white;
+    }
+
+    .input-with-icon span {
+      padding: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .input-with-icon input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      text-align: right;
+      outline: none;
+      background: transparent;
     }
   </style>
 </head>
@@ -82,14 +109,25 @@
     <input type="tel" name="phone" placeholder="رقم الهاتف" required>
     <input type="text" name="car" placeholder="نوع / موديل السيارة" required>
     <input type="text" name="maintenance" placeholder="الصيانة المطلوبة" required>
-    <input type="date" name="date" required>
-    <input type="time" name="time" required>
+
+    <div class="input-with-icon">
+      <span>📅</span>
+      <input type="date" name="date" required>
+    </div>
+
+    <div class="input-with-icon">
+      <span>🕒</span>
+      <input type="time" name="time" required>
+    </div>
+
     <button type="submit">احجز الآن</button>
     <p id="msg" style="color: green;"></p>
   </form>
 
   <div class="contact-box">
-    <a href="tel:01023300060">📞 يمكنك التواصل معنا من خلال الهاتف <strong>01023300060</strong></a>
+    <a href="https://wa.me/201023300060" target="_blank">
+      💬 تواصل معنا عبر واتساب <strong>01023300060</strong>
+    </a>
   </div>
 
   <script>
