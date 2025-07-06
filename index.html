@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>حجز صيانة - رينو وسام إسماعيل</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f3f3f3;
+      direction: rtl;
+    }
+
+    h2 {
+      color: #004aad;
+      margin-top: 30px;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: #004aad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00337a;
+    }
+
+    #msg {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .contact-box {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contact-box a {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact-box a:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>حجز صيانة - رينو وسام إسماعيل</h2>
+
+  <form id="bookingForm">
+    <input type="text" name="name" placeholder="اسم العميل" required>
+    <input type="tel" name="phone" placeholder="رقم الهاتف" required>
+    <input type="text" name="car" placeholder="نوع / موديل السيارة" required>
+    <input type="text" name="maintenance" placeholder="الصيانة المطلوبة" required>
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <button type="submit">احجز الآن</button>
+    <p id="msg" style="color: green;"></p>
+  </form>
+
+  <div class="contact-box">
+    <a href="tel:01023300060">📞 يمكنك التواصل معنا من خلال الهاتف <strong>01023300060</strong></a>
+  </div>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        car: form.car.value,
+        maintenance: form.maintenance.value,
+        date: form.date.value,
+        time: form.time.value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbyw3cSta3qIhMXvTIgik7bcpyWql6gq6mtep67HcydspQvvY9SIe_77t_FqbosJ8Njgqg/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        document.getElementById("msg").innerText = msg.includes("تم") ? "✅ تم الحجز بنجاح!" : msg;
+        form.reset();
+      })
+      .catch(err => {
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").innerText = "❌ حدث خطأ، حاول مرة أخرى.";
+        console.error(err);
+      });
+    });
+  </script>
+
+</body>
+</html>
